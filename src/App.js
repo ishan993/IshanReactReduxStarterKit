@@ -1,21 +1,44 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import ContentRouter from './components/ContentRouter';
+import glamorous from 'glamorous';
+
+const AppWrapper = glamorous.div({
+    height: '100vh',
+    textAlign: 'center'
+  }, (props) =>({
+    background: props.isBackgroundBlue ? 'aliceblue' : 'papayawhip'
+  })
+);
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <AppWrapper isBackgroundBlue={this.props.isBackgroundBlue}>
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h1>React + Redux starter kit</h1>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <BrowserRouter>
+          <ContentRouter />
+        </BrowserRouter>
+      </AppWrapper>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+    isBackgroundBlue: PropTypes.bool.isRequired
+};
+
+function mapStateToProps(state){
+    return ({
+        isBackgroundBlue: state.displayProps.isBackgroundBlue
+    });
+}
+
+export default connect(mapStateToProps)(App);
