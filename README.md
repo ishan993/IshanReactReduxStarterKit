@@ -1,4 +1,4 @@
-A React and Redux Starter kit built from FacebookIncubator's simple React Starter kit 
+A React and Redux Starter kit built from FacebookIncubator's Create-React-App kit 
                        so I don't have to start from scratch every time.               
 
 It includes the following libraries on top of React starter kit:
